@@ -7,23 +7,22 @@ import {
    InputRightElement, 
    VStack, 
    Button 
- } from '@chakra-ui/react';
- 
+} from '@chakra-ui/react';
+
 import React  , {useState} from "react";
 
 const Signup = () => {
-    const [show, setShow] = useState(false);
-    const [name, setName] = useState();
-    const [email, setEmail] = useState();
-    const [confirmpassword, setConfirmpassword] = useState();
-    const [password, setPassword] = useState();
-    const [pic, setPic] = useState();
+   const [show, setShow] = useState(false);
+   const [name, setName] = useState();
+   const [email, setEmail] = useState();
+   const [confirmpassword, setConfirmpassword] = useState();
+   const [password, setPassword] = useState();
+   const [pic, setPic] = useState();
+   const handleClick = () => setShow(!show);
+   const postDetalis = (pics) =>{};
+   const submitHandler =() =>{};
 
-    const handleClick = () => setShow(!show);
-    const postDetalis = (pics) =>{};
-    const submitHandler =() =>{};
-
-    return (<VStack spacing='5px' color='black'> 
+   return (<VStack spacing='5px' color='black'> 
 <FormControl id='firstname' isRequired> 
    <FormLabel>Name</FormLabel>
    <Input 
@@ -51,12 +50,12 @@ const Signup = () => {
    />
    <InputRightElement width="4.5rem">
    <Button h="1.75rem" size="sm" onClick={handleClick}>
-     {show ? "Hide" : "Show"} 
+      {show ? "Hide" : "Show"} 
    </Button>
    </InputRightElement>
 
    </InputGroup>
- 
+
 </FormControl>
 
 <FormControl id='password' isRequired> 
@@ -69,12 +68,12 @@ const Signup = () => {
    />
    <InputRightElement width="4.5rem">
    <Button h="1.75rem" size="sm" onClick={handleClick}>
-     {show ? "Hide" : "Show"} 
+      {show ? "Hide" : "Show"} 
    </Button>
    </InputRightElement>
 
    </InputGroup>
- 
+
 </FormControl>
 
 <FormControl id='pic' > 
@@ -86,7 +85,7 @@ const Signup = () => {
    accept="image/*"
    onChange={(e)=>postDetalis(e.target.files[0])}
    /> 
- 
+
 </FormControl>
 
 
