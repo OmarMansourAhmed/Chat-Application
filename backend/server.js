@@ -4,7 +4,8 @@ const dotenv = require("dotenv");
 const { chats } = require("./data/data");
 const connectDB = require("./config/db");
 const colors = require("colors");
-const userRoutes = require("./routes/userRoutes")
+const userRoutes = require("./routes/userRoutes");
+const chatRoutes = require("./routes/chatRoutes");
 const {notFound, errorHandler } = require("./middlewares/errorMiddleWare");
 
 dotenv.config();
@@ -31,6 +32,7 @@ app.get("/",(req,res)=>{
         //     res.send(singleChat);
         // });
         
+        app.use('/api/chat',chatRoutes);   
         app.use('/api/User',userRoutes);   
         
         const PORT = process.env.PORT || 5000
