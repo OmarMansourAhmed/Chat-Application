@@ -1,29 +1,26 @@
 import { Box } from "@chakra-ui/layout";
 import "./styles.css";
-// import SingleChat from "./SingleChat";
 import { ChatState } from "../Context/ChatProvider";
 import SingleChat from "./SingleChat";
-// import SingleChat from "./SingleChat";
 
 const Chatbox = ({ fetchAgain, setFetchAgain }) => {
     const { selectedChat } = ChatState();
 
     return (
-        <>
         <Box
             display={{ base: selectedChat ? "flex" : "none", md: "flex" }}
             alignItems="center"
             flexDir="column"
             p={3}
-            bg="white"
+            bg="#1a202c" // Dark background
+            color="white" // Text color
             w={{ base: "100%", md: "68%" }}
             borderRadius="lg"
-            borderWidth="1px"
+            border="1px solid"
+            borderColor="#2d3748" // Dark border
         >
-            
-        <SingleChat fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />
+            <SingleChat fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />
         </Box>
-        </>
     );
 };
 

@@ -1,188 +1,18 @@
-// import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button, useDisclosure, FormControl, Input, useToast, Box, } from "@chakra-ui/react";
-// import axios from "axios";
-// import { useState } from "react";
-// import { ChatState } from "../../Context/ChatProvider";
-// import UserBadgeItem from "../UserAvatar/UserBadgeItem";
-// import UserListItem from '../UserAvatar/UserListItem';
-
-
-// const GroupChatModal = ({ children }) => {
-//     const { isOpen, onOpen, onClose } = useDisclosure();
-//     const [groupChatName, setGroupChatName] = useState();
-//     const [selectedUsers, setSelectedUsers] = useState([]);
-//     const [search, setSearch] = useState("");
-//     const [searchResult, setSearchResult] = useState([]);
-//     const [loading, setLoading] = useState(false);
-//     const toast = useToast();
-
-//     const { user, chats, setChats } = ChatState();
-
-//     const handleGroup = (userToAdd) => {
-//         if (selectedUsers.includes(userToAdd)) {
-//             toast({
-//                 title: "User already added",
-//                 status: "warning",
-//                 duration: 5000,
-//                 isClosable: true,
-//                 position: "top",
-//             });
-//             return;
-//         }
-
-//         setSelectedUsers([...selectedUsers, userToAdd]);
-//     };
-
-//     const handleSearch = async (query) => {
-//         setSearch(query);
-//         if (!query) {
-//             return;
-//         }
-//         try {
-//             setLoading(true);
-//             const config = {
-//                 headers: {
-//                     Authorization: `Bearer ${user.token}`,
-//                 },
-//             };
-//             const { data } = await axios.get(`/api/user?search=${search}`, config);
-//             setLoading(false);
-//             setSearchResult(data);
-//         } catch (error) {
-//             toast({
-//                 title: "Error Occured!",
-//                 description: "Failed to Load the Search Results",
-//                 status: "error",
-//                 duration: 5000,
-//                 isClosable: true,
-//                 position: "bottom-left",
-//             });
-//         }
-
-//     };
-
-//     const handleDelete = (delUser) => {
-//         setSelectedUsers(selectedUsers.filter((sel) => sel._id !== delUser._id));
-//     };
-
-//     const handleSubmit = async () => {
-//         if (!groupChatName || !selectedUsers) {
-//             toast({
-//                 title: "Please fill all the feilds",
-//                 status: "warning",
-//                 duration: 5000,
-//                 isClosable: true,
-//                 position: "top",
-//             });
-//             return;
-//         }
-
-//         try {
-//             const config = {
-//                 headers: {
-//                     Authorization: `Bearer ${user.token}`,
-//                 },
-//             };
-//             const { data } = await axios.post(
-//                 `/api/chat/group`,
-//                 {
-//                     name: groupChatName,
-//                     users: JSON.stringify(selectedUsers.map((u) => u._id)),
-//                 },
-//                 config
-//             );
-//             setChats([data, ...chats]);
-//             onClose();
-//             toast({
-//                 title: "New Group Chat Created!",
-//                 status: "success",
-//                 duration: 5000,
-//                 isClosable: true,
-//                 position: "bottom",
-//             });
-//         } catch (error) {
-//             toast({
-//                 title: "Failed to Create the Chat!",
-//                 description: error.response.data,
-//                 status: "error",
-//                 duration: 5000,
-//                 isClosable: true,
-//                 position: "bottom",
-//             });
-//         }
-//     };
-
-//     return (
-//         <>
-//             <span onClick={onOpen}>{children}</span>
-
-//             <Modal onClose={onClose} isOpen={isOpen} isCentered>
-//                 <ModalOverlay />
-//                 <ModalContent>
-//                     <ModalHeader
-//                         fontSize="35px"
-//                         fontFamily="Work sans"
-//                         display="flex"
-//                         justifyContent="center"
-//                     >
-//                         Create Group Chat
-//                     </ModalHeader>
-//                     <ModalCloseButton />
-//                     <ModalBody display="flex" flexDirection="column" alignItems="center">
-//                         <FormControl>
-//                             <Input
-//                                 placeholder="Chat Name"
-//                                 mb={3}
-//                                 onChange={(e) => setGroupChatName(e.target.value)}
-//                             />
-//                         </FormControl>
-//                         <FormControl>
-//                             <Input
-//                                 placeholder="Add Users eg: John, Piyush, Jane"
-//                                 mb={1}
-//                                 onChange={(e) => {handleSearch(e.target.value)
-//                                     console.log(e.target.value);
-//                                 console.log(selectedUsers);}
-//                                 }
-
-//                             />
-//                         </FormControl>
-//                         <Box w="100%" display="flex" flexWrap="wrap">
-//                             {selectedUsers.map((u) => (
-//                                 <UserBadgeItem
-//                                     key={u._id}
-//                                     user={u}
-//                                     handleFunction={() => handleDelete(u)}
-//                                 />
-//                             ))}
-//                         </Box>
-//                         {loading ? (
-//                             // <ChatLoading />
-//                             <div>Loading...</div>
-//                         ) : (
-//                             searchResult?.slice(0,4).map((u) => (
-//                                     <UserListItem
-//                                         key={u._id}
-//                                         user={u}
-//                                         handleFunction={() => handleGroup(u)}
-//                                     />
-//                                 ))
-//                         )}
-//                     </ModalBody>
-//                     <ModalFooter>
-//                         <Button onClick={handleSubmit} colorScheme="blue">
-//                             Create Chat
-//                         </Button>
-//                     </ModalFooter>
-//                 </ModalContent>
-//             </Modal>
-//         </>
-//     );
-// };
-
-// export default GroupChatModal;
-
 import {
-    Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button, useDisclosure, FormControl, Input, useToast, Box,
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,
+    Button,
+    useDisclosure,
+    FormControl,
+    Input,
+    useToast,
+    Box,
+    Text,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useState } from "react";
@@ -206,13 +36,12 @@ const GroupChatModal = ({ children }) => {
             toast({
                 title: "User already added",
                 status: "warning",
-                duration: 5000,
+                duration: 3000,
                 isClosable: true,
-                position: "top",
+                position: "top-left",
             });
             return;
         }
-
         setSelectedUsers([...selectedUsers, userToAdd]);
     };
 
@@ -228,14 +57,14 @@ const GroupChatModal = ({ children }) => {
                 },
             };
             const { data } = await axios.get(`/api/user?search=${search}`, config);
-            setLoading(false);
             setSearchResult(data);
+            setLoading(false);
         } catch (error) {
             toast({
-                title: "Error Occurred!",
-                description: "Failed to Load the Search Results",
+                title: "Search failed",
+                description: "Failed to load search results",
                 status: "error",
-                duration: 5000,
+                duration: 3000,
                 isClosable: true,
                 position: "bottom-left",
             });
@@ -249,11 +78,11 @@ const GroupChatModal = ({ children }) => {
     const handleSubmit = async () => {
         if (!groupChatName || !selectedUsers.length) {
             toast({
-                title: "Please fill all the fields",
+                title: "All fields required",
                 status: "warning",
-                duration: 5000,
+                duration: 3000,
                 isClosable: true,
-                position: "top",
+                position: "top-left",
             });
             return;
         }
@@ -264,6 +93,7 @@ const GroupChatModal = ({ children }) => {
                     Authorization: `Bearer ${user.token}`,
                 },
             };
+
             const { data } = await axios.post(
                 `/api/chat/group`,
                 {
@@ -275,18 +105,18 @@ const GroupChatModal = ({ children }) => {
             setChats([data, ...chats]);
             onClose();
             toast({
-                title: "New Group Chat Created!",
+                title: "Group chat created!",
                 status: "success",
-                duration: 5000,
+                duration: 3000,
                 isClosable: true,
                 position: "bottom",
             });
         } catch (error) {
             toast({
-                title: "Failed to Create the Chat!",
+                title: "Chat creation failed",
                 description: error.response.data,
                 status: "error",
-                duration: 5000,
+                duration: 3000,
                 isClosable: true,
                 position: "bottom",
             });
@@ -299,10 +129,10 @@ const GroupChatModal = ({ children }) => {
 
             <Modal onClose={onClose} isOpen={isOpen} isCentered>
                 <ModalOverlay />
-                <ModalContent bg="#1a1a1a" color="white">
+                <ModalContent bg="#1a202c" color="white">
                     <ModalHeader
-                        fontSize="35px"
-                        fontFamily="Work sans"
+                        fontSize="2xl"
+                        fontFamily="Work Sans"
                         display="flex"
                         justifyContent="center"
                     >
@@ -310,26 +140,27 @@ const GroupChatModal = ({ children }) => {
                     </ModalHeader>
                     <ModalCloseButton color="white" />
                     <ModalBody display="flex" flexDirection="column" alignItems="center">
-                        <FormControl>
+                        <FormControl mb={3}>
                             <Input
                                 placeholder="Chat Name"
-                                mb={3}
                                 onChange={(e) => setGroupChatName(e.target.value)}
-                                bg="#333"
+                                bg="#2d3748"
                                 color="white"
                                 _placeholder={{ color: "gray.400" }}
+                                _focus={{ bg: "#4A5568", borderColor: "#38B2AC" }}
                             />
                         </FormControl>
                         <FormControl>
                             <Input
                                 placeholder="Add Users e.g., Bruce, Selina"
-                                mb={1}
                                 onChange={(e) => handleSearch(e.target.value)}
-                                bg="#333"
+                                bg="#2d3748"
                                 color="white"
                                 _placeholder={{ color: "gray.400" }}
+                                _focus={{ bg: "#4A5568", borderColor: "#38B2AC" }}
                             />
                         </FormControl>
+
                         <Box w="100%" display="flex" flexWrap="wrap" mt={2}>
                             {selectedUsers.map((u) => (
                                 <UserBadgeItem
@@ -339,20 +170,30 @@ const GroupChatModal = ({ children }) => {
                                 />
                             ))}
                         </Box>
-                        {loading ? (
-                            <div style={{ color: "gray" }}>Loading...</div>
-                        ) : (
-                            searchResult?.slice(0, 4).map((u) => (
-                                <UserListItem
-                                    key={u._id}
-                                    user={u}
-                                    handleFunction={() => handleGroup(u)}
-                                />
-                            ))
-                        )}
+
+                        <Box w="100%" mt={2}>
+                            {loading ? (
+                                <Text color="gray.400" textAlign="center">
+                                    Loading...
+                                </Text>
+                            ) : (
+                                searchResult?.slice(0, 4).map((u) => (
+                                    <UserListItem
+                                        key={u._id}
+                                        user={u}
+                                        handleFunction={() => handleGroup(u)}
+                                    />
+                                ))
+                            )}
+                        </Box>
                     </ModalBody>
                     <ModalFooter>
-                        <Button onClick={handleSubmit} colorScheme="purple">
+                        <Button
+                            onClick={handleSubmit}
+                            bg="#38B2AC"
+                            color="white"
+                            _hover={{ bg: "#319795" }}
+                        >
                             Create Chat
                         </Button>
                     </ModalFooter>
