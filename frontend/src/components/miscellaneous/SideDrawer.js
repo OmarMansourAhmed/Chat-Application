@@ -208,7 +208,8 @@ import { useDisclosure } from "@chakra-ui/hooks";
 import axios from "axios";
 import ChatLoading from "../ChatLoading";
 import UserListItem from "../UserAvatar/UserListItem";
-
+import  { Effect } from 'react-notification-badge';
+import NotificationBadge from 'react-notification-badge/lib/components/NotificationBadge';
 const SideDrawer = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [search, setSearch] = useState("");
@@ -216,7 +217,7 @@ const SideDrawer = () => {
     const [loading, setLoading] = useState(false);
     const [loadingChat, setLoadingChat] = useState();
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-    const { user, setSelectedChat, chats, setChats } = ChatState();
+    const { user, setSelectedChat, chats, setChats,notification,setNotification } = ChatState();
     const history = useHistory();
     const toast = useToast();
 
@@ -315,8 +316,33 @@ const SideDrawer = () => {
                 <div>
                     <Menu>
                         <MenuButton p={1}>
-                            <BellIcon fontSize="2xl" m={1} color="white" />
+                            <BellIcon fontSize="2xl" m={1} color="turquoise" />
+                            <NotificationBadge
+                                count={notification.length}
+                                effect={Effect.SCALE}
+                                style={{ backgroundColor: "#2d3748" }}
+                            />
                         </MenuButton>
+                        <MenuList fontSize="1xl" m={1} color="black" fontWeight={600}>
+                            
+                                 {!notification.length && "The night is very dark today"}
+                            {notification.map((notif) => (
+                                <MenuItem
+                                    key={notif._id}
+                                    onClick={() => {
+                                        setSelectedChat(notif.chat);
+                                        setNotification(notification.filter((n) => n !== notif));
+                                    }}
+                                    bg="#2d3748"
+                                    color="white"
+                                    _hover={{ bg: "#38B2AC" }}
+                                >
+                                    {notif.chat.isGroupChat
+                                        ? `New message in ${notif.chat.chatName}`
+                                        : `New message from ${notif.sender.name}`}
+                                </MenuItem>
+                            ))}
+                            </MenuList>
                     </Menu>
 
                     <Menu>
@@ -329,6 +355,7 @@ const SideDrawer = () => {
                             </ProfileModal>
                             <MenuDivider borderColor="#4A5568" />
                             <MenuItem onClick={logoutHandler} bg="#2d3748" _hover={{ bg: "#E53E3E" }}>Logout</MenuItem>
+                        
                         </MenuList>
                     </Menu>
                 </div>
