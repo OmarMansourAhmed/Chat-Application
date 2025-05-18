@@ -44,10 +44,14 @@ A full-stack real-time chat application with a Batman-inspired UI, designed for 
 
 
 ## 📂 Project Structure
-CHAT-APPLICATION/
-│
-├── backend/ # Backend code
-│ ├── config/ # DB & environment setup
+CHAT-APPLICATION/  
+
+│  
+
+├── backend/ # Backend code  
+
+│ ├── config/ # DB & environment setup  
+
 │ ├── controllers/ # Route logic
 │ ├── data/ # Static or seed data (if any)
 │ ├── middlewares/ # Custom middleware (e.g. auth)
