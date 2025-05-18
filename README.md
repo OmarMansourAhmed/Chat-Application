@@ -104,3 +104,28 @@ CHAT-APPLICATION/
 
 └── node_modules/  
 
+
+
+## 🚀 Getting Started
+
+To run the project locally:
+
+Clone the repository using:
+
+```bash
+git clone https://github.com/your-username/chat-application.git
+cd chat-application
+
+cd backend
+npm install
+npm start
+
+PORT=5000
+MONGO_URI=your-mongodb-uri
+JWT_SECRET=your-secret-key
+CLIENT_URL=http://localhost:3000
+
+
+cd frontend
+npm install
+npm start
