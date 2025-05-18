@@ -120,6 +120,7 @@ cd backend
 npm install
 npm start
 
+./env
 PORT=5000
 MONGO_URI=your-mongodb-uri
 JWT_SECRET=your-secret-key
