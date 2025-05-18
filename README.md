@@ -7,7 +7,8 @@ A full-stack real-time chat application with a Batman-inspired UI, designed for 
 
 ## 📸 Demo
 
-https://github.com/OmarMansourAhmed/Chat-Application/issues/8#issue-3072083736
+![image](https://github.com/user-attachments/assets/4107f60b-9427-4e91-b3d5-8c6fba3d5705)
+
 
 ---
 
