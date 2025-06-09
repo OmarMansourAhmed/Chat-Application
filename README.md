@@ -25,10 +25,8 @@ A full-stack real-time chat application with a Batman-inspired UI, designed for 
 - 👤 User authentication & registration
 - 💬 Private & group chat support
 - 🌙 Dark-themed, Batman-inspired UI
-- 🧠 AI assistant for suggestions (optional)
 - 🛡️ Secure communication (JWT, HTTPS)
 - 📱 Responsive design (mobile & desktop)
-- 🗑️ Message history & delete support
 
 ---
 
